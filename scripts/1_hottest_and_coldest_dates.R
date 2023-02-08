@@ -251,3 +251,5 @@ ggplot(weather4, aes(x = fake_date, y = med_max_temps_7d)) +
 #TODO: Calculate season start and end dates so that the middle of summer is the
 # average hottest day, and the middle of winter is the average coldest day
 #TODO: Create a graph like above showing seasons
+#TODO: put functions in a separate script in the src folder and source them in
+# main scripts

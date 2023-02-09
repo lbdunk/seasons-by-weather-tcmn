@@ -217,7 +217,8 @@ ggplot(weather4, aes(x = fake_date, y = med_max_temps_7d)) +
   geom_text(aes(x = lubridate::mdy("12/17/23"),
                 y = max_temp_year,
                 label = glue::glue("Max: {max_temp_year}°"),
-                vjust = -0.5
+                vjust = -0.5,
+                hjust = 0.6
                 ),
             check_overlap = TRUE
             ) +
@@ -226,7 +227,8 @@ ggplot(weather4, aes(x = fake_date, y = med_max_temps_7d)) +
   geom_text(aes(x = lubridate::mdy("12/17/23"),
                 y = min_temp_year,
                 label = glue::glue("Min: {min_temp_year}°"),
-                vjust = 1.5
+                vjust = 1.2,
+                hjust = 0.6
                 ),
             check_overlap = TRUE
             ) +
@@ -242,5 +244,18 @@ ggplot(weather4, aes(x = fake_date, y = med_max_temps_7d)) +
   geom_text(aes(x = min_temp_date,
                 y = min_temp_year,
                 label = min_temp_date_char,
-                vjust = 1.5),
+                vjust = 1.2,
+                hjust = 0.4),
             check_overlap = TRUE)
+
+# Save graph as a PNG
+
+ggplot2::ggsave(
+  filename = "Hottest and coldest dates.png",
+  device = "png",
+  path = "output",
+  dpi = 150,
+  width = 1000,
+  height = 800,
+  units = "px"
+)

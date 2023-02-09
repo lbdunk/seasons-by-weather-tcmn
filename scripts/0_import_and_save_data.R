@@ -7,51 +7,10 @@
 # install.packages("tidyverse")
 # install.packages("janitor")
 library(tidyverse)
-library(janitor)
 
-# Data is saved as Data/weather.Rdata
-
-import <- function(filename) {
-  readxl::read_xlsx(glue::glue("Data/{filename}.xlsx"),
-                    na = "M",
-                    skip = 2,
-                    col_names = c("date",
-                                  "max_temp",
-                                  "min_temp",
-                                  "precip_T",
-                                  "snowfall_T",
-                                  "snow_depth_T"),
-                    col_types = c("date",
-                                  "numeric",
-                                  "numeric",
-                                  "text",
-                                  "text",
-                                  "text"))
-  # These last 3 rows contain "T" to indicate "trace" amounts of snow, so they
-  # can't be imported as numeric
-  
-  # Need to import Date as numeric and convert to date afterwards because
-  # read_xlsx will not automatically convert dates before 1900
-}
-
-import1800s <- function(filename) {
-  readxl::read_xlsx(glue::glue("Data/{filename}.xlsx"),
-                    na = "M",
-                    skip = 2,
-                    col_names = c("date_num",
-                                  "max_temp",
-                                  "min_temp",
-                                  "precip_T",
-                                  "snowfall_T",
-                                  "snow_depth_T"),
-                    col_types = c("numeric",
-                                  "numeric",
-                                  "numeric",
-                                  "text",
-                                  "text",
-                                  "text")) |>
-    mutate(date = janitor::excel_numeric_to_date(date_num))
-}
+# Functions to import weather data from the DNR files
+# Separate functions for files before & after 1900s
+source("src/import and import1800s.R")
 
 # This DNR file (2010 to present) should be re-downloaded regularly because it
 # updates continually with 2020s data

@@ -3,6 +3,8 @@
 # https://www.dnr.state.mn.us/climate/twin_cities/listings.html
 
 # Script 1: Imports the weather data, stacks it, and saves it in the Data folder
+# Only need to run this file if updating weather data - otherwise the stacked
+# data should be saved in the data folder
 
 # install.packages("tidyverse")
 # install.packages("janitor")

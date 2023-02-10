@@ -1,19 +1,9 @@
----
-title: "Minneapolis Weather and Seasons Analysis"
-author: "Lily Dunk"
-date: "`r Sys.Date()`"
-output: github_document
----
+Minneapolis Weather and Seasons Analysis
+================
+Lily Dunk
+2023-02-09
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-"
-)
-```
 
 ## Current status
 
@@ -42,7 +32,7 @@ repeatedly melt and freeze over with ice (I assume!).
 
 I decided to calculate the start and end of each season based on
 historical weather data for the Twin Cities area - that’s the
-metropolitan region of Minneapolis and St. Paul, Minnesota.
+metropolitan region of Minneapolis and St. Paul, Minnesota.
 
 ## Data
 
@@ -80,7 +70,11 @@ intuitive.
 
 ## Results
 
-![A graph showing the average high temperature of each day of the year in the Twin Cities, and reference lines showing January 21 has the lowest average temperature at 23 degrees F, and July 18 has the highest average temperature at 84 degrees F.](output/Hottest and coldest dates.png)
+![A graph showing the average high temperature of each day of the year
+in the Twin Cities, and reference lines showing January 21 has the
+lowest average temperature at 23 degrees F, and July 18 has the highest
+average temperature at 84 degrees
+F.](output/Hottest%20and%20coldest%20dates.png)
 
 [^1]: Northern Michigan University Center for Native American Studies,
     “Moons of the Anishinaabeg”:

@@ -122,7 +122,6 @@ weather4 <- weather3 |>
                 fake_date = lubridate::mdy(glue::glue("{month}/{day}/2023"))
                 ) |>
   ungroup()
-)
 
 # Calculate hottest and coldest dates ------------------------------------------
 

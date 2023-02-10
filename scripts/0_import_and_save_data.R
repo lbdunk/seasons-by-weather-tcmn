@@ -38,19 +38,21 @@ w1890s <- import1800s("1890s")
 w1880s <- import1800s("1880s")
 w1870s <- import1800s("1870s")
 
-weather <- dplyr::bind_rows(w2010s,
-                            w2000s,
-                            w1990s,
-                            w1980s,
-                            w1970s,
-                            w1960s,
-                            w1950s,
-                            w1940s,
-                            w1930s,
-                            w1920s,
-                            w1910s,
-                            w1900s,
-                            w1890s,
-                            w1880s,
-                            w1870s)
+weather <- dplyr::bind_rows(
+  w2010s,
+  w2000s,
+  w1990s,
+  w1980s,
+  w1970s,
+  w1960s,
+  w1950s,
+  w1940s,
+  w1930s,
+  w1920s,
+  w1910s,
+  w1900s,
+  w1890s,
+  w1880s,
+  w1870s
+)
 save(weather, file = "Data/weather.Rdata")

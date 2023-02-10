@@ -9,22 +9,27 @@ library(janitor)
 
 import <- function(filename) {
   readxl::read_xlsx(glue::glue("Data/{filename}.xlsx"),
-                    na = "M", # Missing is coded as M
-                    skip = 2, # First row is header, second is column names
-                    # Use custom column names
-                    col_names = c("date",
-                                  "max_temp",
-                                  "min_temp",
-                                  "precip_T",
-                                  "snowfall_T",
-                                  "snow_depth_T"),
-                    # Specify column types
-                    col_types = c("date",
-                                  "numeric",
-                                  "numeric",
-                                  "text",
-                                  "text",
-                                  "text"))
+    na = "M", # Missing is coded as M
+    skip = 2, # First row is header, second is column names
+    # Use custom column names
+    col_names = c(
+      "date",
+      "max_temp",
+      "min_temp",
+      "precip_T",
+      "snowfall_T",
+      "snow_depth_T"
+    ),
+    # Specify column types
+    col_types = c(
+      "date",
+      "numeric",
+      "numeric",
+      "text",
+      "text",
+      "text"
+    )
+  )
   # These last 3 rows contain "T" to indicate "trace" amounts of snow, so they
   # can't be imported as numeric
 }
@@ -35,19 +40,24 @@ import <- function(filename) {
 
 import1800s <- function(filename) {
   readxl::read_xlsx(glue::glue("Data/{filename}.xlsx"),
-                    na = "M",
-                    skip = 2,
-                    col_names = c("date_num",
-                                  "max_temp",
-                                  "min_temp",
-                                  "precip_T",
-                                  "snowfall_T",
-                                  "snow_depth_T"),
-                    col_types = c("numeric",
-                                  "numeric",
-                                  "numeric",
-                                  "text",
-                                  "text",
-                                  "text")) |>
+    na = "M",
+    skip = 2,
+    col_names = c(
+      "date_num",
+      "max_temp",
+      "min_temp",
+      "precip_T",
+      "snowfall_T",
+      "snow_depth_T"
+    ),
+    col_types = c(
+      "numeric",
+      "numeric",
+      "numeric",
+      "text",
+      "text",
+      "text"
+    )
+  ) |>
     mutate(date = janitor::excel_numeric_to_date(date_num))
 }

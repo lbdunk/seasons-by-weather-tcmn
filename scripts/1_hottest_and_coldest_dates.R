@@ -147,6 +147,8 @@ weather4 <- weather3 |>
   ) |>
   ungroup()
 
+save(weather4, file = "data/weather4.RData")
+
 # Calculate hottest and coldest dates ------------------------------------------
 
 # Calculate overall highest and lowest median rolling temp

@@ -17,6 +17,8 @@ load("data/weather.RData")
 load("data/weather4.RData")
 load("data/max_temp_date.RData")
 load("data/min_temp_date.RData")
+midsummer <- max_temp_date
+midwinter <- min_temp_date
 
 # Make a version of the weather dataset that only includes complete years so
 # that all dates are represented equally
@@ -47,13 +49,18 @@ med_temp_dates <- weather4 |>
 
 # Dates between midwinter and midsummer are possible midspring dates
 midspring_dates <- med_temp_dates |>
-  dplyr::filter(min_temp_date < fake_date, fake_date < max_temp_date)
+  dplyr::filter(midwinter < fake_date, fake_date < midsummer)
 # Take the median of those dates
 midspring <- median(midspring_dates$fake_date)
 
 # Dates between midsummer and midwinter the next year are possible midfall dates
 midfall_dates <- med_temp_dates |>
-  dplyr::filter(max_temp_date < fake_date,
-                fake_date < min_temp_date + lubridate::years(1))
+  dplyr::filter(midsummer < fake_date,
+                fake_date < midwinter + lubridate::years(1))
 # Take the median of those dates
 midfall <- median(midfall_dates$fake_date)
+
+# Use midpoints to find season start dates -------------------------------------
+
+spring_interval <- lubridate::interval(midwinter, midspring)
+spring_start <- midwinter + lubridate::as.duration(spring_interval) / 2

@@ -14,6 +14,9 @@ library(tidyverse)
 # Trim weather dataset ---------------------------------------------------------
 
 load("data/weather.RData")
+load("data/weather4.RData")
+load("data/max_temp_date.RData")
+load("data/min_temp_date.RData")
 
 # Make a version of the weather dataset that only includes complete years so
 # that all dates are represented equally
@@ -35,3 +38,22 @@ if (lubridate::month(max(weather$date)) == 12
   max_year <- lubridate::year(max(weather$date) - lubridate::years(1))
   max_date <- lubridate::mdy(glue::glue("12/31/{max_year}"))
 }
+
+# Find dates where daily avg matches yearly avg --------------------------------
+median_temp <- median(weather$max_temp, na.rm = TRUE)
+med_temp_dates <- weather4 |>
+  dplyr::select(fake_date, med_max_temps_7d) |>
+  dplyr::filter(med_max_temps_7d == median_temp)
+
+# Dates between midwinter and midsummer are possible midspring dates
+midspring_dates <- med_temp_dates |>
+  dplyr::filter(min_temp_date < fake_date, fake_date < max_temp_date)
+# Take the median of those dates
+midspring <- median(midspring_dates$fake_date)
+
+# Dates between midsummer and midwinter the next year are possible midfall dates
+midfall_dates <- med_temp_dates |>
+  dplyr::filter(max_temp_date < fake_date,
+                fake_date < min_temp_date + lubridate::years(1))
+# Take the median of those dates
+midfall <- median(midfall_dates$fake_date)

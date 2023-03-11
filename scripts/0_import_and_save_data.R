@@ -55,4 +55,4 @@ weather <- dplyr::bind_rows(
   w1880s,
   w1870s
 )
-save(weather, file = "Data/weather.Rdata")
+save(weather, file = "data/weather.Rdata")

@@ -10,7 +10,7 @@
 library(tidyverse)
 
 # Clean data and add lag/lead dates --------------------------------------------
-load("Data/weather.Rdata")
+load("data/weather.Rdata")
 
 weather2 <- weather |>
   dplyr::mutate(
@@ -168,6 +168,7 @@ max_temp_date <- lubridate::date(
   min_max_temp_date +
     lubridate::seconds(lubridate::int_length(max_temp_interval) / 2)
 )
+save(max_temp_date, file = "data/max_temp_date.RData")
 # Change to character for point label
 max_temp_date_char <- lubridate::stamp("December 31",
   orders = "%B %d",
@@ -187,7 +188,8 @@ min_temp_date <- lubridate::date(
   min_min_temp_date +
     lubridate::seconds(lubridate::int_length(min_temp_interval) / 2)
 )
-
+save(min_temp_date, file = "data/min_temp_date.RData")
+# Change to character for point label
 min_temp_date_char <- lubridate::stamp("December 31",
   orders = "%B %d",
   exact = TRUE,
